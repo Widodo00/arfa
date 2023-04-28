@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://dekatutorial.github.io/styleGombalin.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://dekatutorial.github.io/stylePopUp.css"
+    />
+    <script src="https://widodo00.github.io/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.all.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Hallo Arfa</title>
+  </head>
+  <body id="body">
+    <div class="preload"><p>Loading dulu . . .</p></div>
+    <div class="open">
+      <div>
+        <div class="lope" onclick="ilang()">
+          <i class="love material-icons-sharp"> favorite </i>
+        </div>
+        <h3>Dipencet ya gambar hatinya</h3>
+      </div>
+    </div>
+    <div id="bg"></div>
+    <img src="" alt="" id="fotoku" />
+
+    <h2 id="hai">Hai Arfa!</h2>
+    <h3 id="hia">Scrool kesamping ya</h3>
+
+    <div id="slider">
+      <p>Arfa masih kesel ya? 😔</p>
+      <p>Udahan dong keselnya 🥺</p>
+      <p>Jangan lama-lama yaaa 🫠</p>
+      <p>Nanti cantiknya berkurang 😤</p>
+      <p>Canda manis 😁</p>
+
+      <p>Diklik ya gambar sabrut nya..<span>❤️‍🔥</span></p>
+    </div>
+  </body>
+  <script>
+    musik = "lagu.mp3";
+    foto = "emote.gif";
+    background = "bg.jpg";
+    noWhatsapp = "62895330613450";
+
+    async function popUp() {
+      await swalo.fire({ title: "Makasih ya udah ingetin dodo", imageUrl: "" });
+      await swalo.fire({ title: "Makasih tetep sama dodo", imageUrl: "" });
+      await swalo.fire({ title: "Dodo kangen sama arfa", imageUrl: "" });
+      await swalo.fire({
+        title: "Klo arfa di lampung kita jalan-jalan yaaa",
+        imageUrl: "motor.gif",
+      });
+
+      kirimPesan();
+    }
+    $(window).on("load", function () {
+      $(".preload").fadeOut("slow");
+    });
+    var audio = new Audio(musik);
+    audio.autoplay = true;
+    audio.loop = true;
+    bg.style =
+      'background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("' +
+      background +
+      '");';
+    fotoku.src = foto;
+    popupku();
+    var swalo = Swal.mixin({ allowOutsideClick: false });
+    async function kirimPesan() {
+      var { value: pesan } = await swalo.fire({
+        title: "Tulis pesan",
+        input: "text",
+        confirmButtonText: "Kirim",
+      });
+      if (pesan) {
+        await swalo.fire("Kirim ke dodo ya pesannya");
+        location.assign(
+          "https://api.whatsapp.com/send?phone=" + noWhatsapp + "&text=" + pesan
+        );
+      } else {
+        await swalo.fire({
+          confirmButtonText: "Iya deh",
+          title: "Jangan dikosongin ya :)",
+        });
+        kirimPesan();
+      }
+    }
+    document.querySelector("span").addEventListener("click", function () {
+      popUp();
+    });
+    var open = document.querySelector(".open");
+    function ilang() {
+      audio.play();
+      open.style =
+        "transition: 1.5s ease-out all; opacity: 0; transform: scale(100) translateY(-20px); filter: brightness(0);";
+      setTimeout(function () {
+        open.style = "display:none;";
+      }, 1500);
+      setTimeout(function () {
+        fotoku.style =
+          "opacity: 1; transition: 1s all ease; transform: translateY(0px) scale(2); margin-top: 80px;";
+      }, 500);
+      setTimeout(function () {
+        hai.style =
+          "opacity: 1; transition: 1s all ease; transform: translateY(0px); margin-top: 60px;";
+      }, 1400);
+      setTimeout(function () {
+        hia.style =
+          "opacity: 1; transition: 1s all ease; transform: translateY(0px);";
+      }, 1800);
+      setTimeout(function () {
+        slider.style =
+          "opacity: 1; transition: 1s all ease; transform: translateY(0px) scale(1);";
+      }, 2200);
+    }
+  </script>
+</html>
